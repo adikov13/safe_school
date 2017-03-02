@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302113802) do
+ActiveRecord::Schema.define(version: 20170302130103) do
 
   create_table "group_students", force: :cascade do |t|
     t.integer  "group_id"
@@ -23,17 +23,35 @@ ActiveRecord::Schema.define(version: 20170302113802) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
+    t.integer  "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_groups_on_teacher_id"
+  end
+
+  create_table "parents", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_parents_on_user_id"
   end
 
   create_table "students", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "group_id"
+    t.integer  "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_students_on_group_id"
+    t.index ["parent_id"], name: "index_students_on_parent_id"
     t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
   create_table "user_types", force: :cascade do |t|
