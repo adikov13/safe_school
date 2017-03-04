@@ -3,6 +3,9 @@ class CreateTeachers < ActiveRecord::Migration[5.0]
     create_table :teachers do |t|
     	t.string :name
     	t.references :user, foreign_key: true
+    	t.string :group
+    	t.string :teaching_courses
+
 
       t.timestamps
     end
