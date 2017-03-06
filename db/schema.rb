@@ -12,11 +12,12 @@
 
 ActiveRecord::Schema.define(version: 20170302130103) do
 
-  create_table "group_students", force: :cascade do |t|
+  create_table "group_students", id: false, force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["group_id", "student_id"], name: "index_group_students_on_group_id_and_student_id", unique: true
     t.index ["group_id"], name: "index_group_students_on_group_id"
     t.index ["student_id"], name: "index_group_students_on_student_id"
   end
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170302130103) do
   create_table "parents", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
+    t.string   "childrens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_parents_on_user_id"
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170302130103) do
   create_table "students", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "parent_id"
+    t.string   "group"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_students_on_parent_id"
@@ -49,8 +52,10 @@ ActiveRecord::Schema.define(version: 20170302130103) do
   create_table "teachers", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "group"
+    t.string   "teaching_courses"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
@@ -62,6 +67,10 @@ ActiveRecord::Schema.define(version: 20170302130103) do
 
   create_table "users", force: :cascade do |t|
     t.integer  "user_type_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "date_of_birth"
+    t.string   "phone_number"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"

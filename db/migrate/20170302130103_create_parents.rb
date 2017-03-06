@@ -3,6 +3,7 @@ class CreateParents < ActiveRecord::Migration[5.0]
     create_table :parents do |t|
     	t.string :name
     	t.references :user
+    	t.string :childrens
 
       t.timestamps
     end
