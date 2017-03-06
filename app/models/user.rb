@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :user_type
   has_one :student
+  has_one :teacher
+  has_one :parent
+
 
  #  validates :first_name, presence: true
 	# validates :last_name, presence: true

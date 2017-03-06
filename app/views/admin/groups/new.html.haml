@@ -1,0 +1,9 @@
+= form_for @group, url: admin_groups_path do |f|
+	%div
+		= f.label :name
+	%div
+		= f.text_field :name
+	%div
+		= f.collection_select(:teacher_id, Teacher.all, :id, :full_name)
+	%div
+		= f.submit
