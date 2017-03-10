@@ -1,7 +1,7 @@
 module Admin
 	class Admin::GroupsController < ApplicationController
 		def index
-			@teachers = Teacher.all
+			@groups = Group.all
 		end
 
 		def new

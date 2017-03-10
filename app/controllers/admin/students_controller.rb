@@ -7,12 +7,15 @@ module Admin
 			
 		end
 		def create
-			user = User.create(email: "qwe@qwe.com", password:"123456",
+			username = generate_username(params[:first_name], params[:last_name])
+			password = generate_password(params[:first_name], params[:last_name])
+			
+			user = User.create(username: username, password: password,
 				date_of_birth: params[:date_of_birth],
 				first_name: params[:first_name],
 				last_name: params[:last_name],
 				phone_number: params[:phone_number],
-				password_confirmation: "123456", user_type_id: 1 )
+				password_confirmation: password, user_type_id: 1 )
 			@student = Student.create(user_id: user.id, parent_id: 1)
 			redirect_to admin_student_path @student
 		end

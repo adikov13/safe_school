@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20170302130103) do
     t.string   "last_name"
     t.date     "date_of_birth"
     t.string   "phone_number"
-    t.string   "email",                  default: "", null: false
+    t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(version: 20170302130103) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["user_type_id"], name: "index_users_on_user_type_id"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end
