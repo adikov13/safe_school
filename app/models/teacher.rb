@@ -1,10 +1,7 @@
-class Teacher < ApplicationRecord
-	belongs_to :user
+class Teacher < User
+	
 	has_many :groups
-	validates :teaching_courses, presence: true
-
-  def full_name
-  	self.user.first_name + ' ' + self.user.last_name
-  end
+	has_many :messages
+	has_many :conversations
 
 end

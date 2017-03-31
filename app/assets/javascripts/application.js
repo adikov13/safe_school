@@ -11,6 +11,23 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
+//= require moment
+//= require bootstrap-datetimepicker
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+
+
+
+$("#menu-toggle").click(function(e) {
+		  e.preventDefault();
+		  $("#wrapper").toggleClass("toggled");
+		});
+
+$(function () {
+  $('#datetimepicker4').datetimepicker({
+  	viewMode: 'years',
+    format: 'MM/DD/YYYY'
+  });
+});

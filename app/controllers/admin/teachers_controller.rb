@@ -5,7 +5,7 @@ module Admin
 		end
 
 		def new
-
+			@teacher = Teacher.new
 		end
 
 		def show
@@ -13,18 +13,25 @@ module Admin
 		end
 
 		def create
-			username = generate_username(params[:first_name], params[:last_name])
-			password = generate_password(params[:first_name], params[:last_name])
-			
-			user = User.create(username: username, password: password,
-				date_of_birth: params[:date_of_birth],
-				first_name: params[:first_name],
-				last_name: params[:last_name],
-				phone_number: params[:phone_number],
-				password_confirmation: password, user_type_id: 1 )
-			@teacher = Teacher.create(user_id: user.id, group: params[:group],
-																teaching_courses: params[:teaching_courses])
-			redirect_to admin_teacher_path(@teacher)
+			@teacher = Teacher.create(teacher_params)
+			if @teacher.save
+				redirect_to admin_teacher_path @teacher
+			 flash[:success] = "teacher has been successfully created"
+			else
+				render :new
+				flash[:error] = "Something went wrong"
+			end
+		end
+
+		private
+
+		def teacher_params
+			username = generate_username(params[:teacher][:first_name], params[:teacher][:last_name])
+			password = generate_password(params[:teacher][:first_name], params[:teacher][:last_name])
+
+			params.require(:teacher).permit(:first_name, :last_name, :date_of_birth, 
+																		 :phone_number).merge(username: username, 
+																		 password: password, password_confirmation: password)
 		end
 	end
 end

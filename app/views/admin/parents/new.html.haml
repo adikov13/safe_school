@@ -1,23 +1,30 @@
-= form_tag("/admin/parents", method: :post) do
-	%div
-		= label_tag :first_name
-	%div
-		= text_field_tag :first_name
-	%div
-		= label_tag :last_name
-	%div
-		= text_field_tag :last_name
-	%div
-		= label_tag :childrens
-	%div
-		= text_field_tag :childrens
-	%div
-		= label_tag :date_of_birth
-	%div
-		= text_field_tag :date_of_birth
-	%div
-		= label_tag :phone_number
-	%div
-		= text_field_tag :phone_number
-	%div
-		= submit_tag 
+#content-wrapper
+	- if @parent.errors.any?
+		%h3 The following errors occured
+		%ul
+			- @parent.errors.full_messages.each do |msg|
+				%li
+					= msg
+	.row
+		.col-sm-offset-3.col-sm-6
+			.well
+				%h2{align: "center"} Create Parent
+				= form_for([:admin, @parent], multipart: true, role: "form") do |f|
+					.form-wrap.clearfix
+						.form-inline.col-sm-offset-1
+							.control-label
+								= f.label "Full name"
+							= f.text_field :first_name, class: "form-control rm", autofocus: true, placeholder: "First name"
+							= f.text_field :last_name, class: "form-control rm", placeholder: "Last name"
+						.frm.col-sm-offset-1
+							.form-group
+								= f.label :date_of_birth
+								= f.text_field :date_of_birth, class: "form-control", id: "datetimepicker4", placeholder: "MM/DD/YYYY"
+							.form-group
+								= f.label :phone_number
+								= f.telephone_field :phone_number, class: "form-control", placeholder: "+996 555 111 222"
+							.form-group
+								= f.label :childrens
+								= f.text_field :childrens, class: "form-control"
+							.form-group.pull-right
+								= f.submit "Create parent", class: "btn btn-primary btn-sm"

@@ -1,0 +1,12 @@
+- @message.each do |i|
+	= i.title
+	= i.body
+
+= form_for(@m, url: "/messages/create", method: :post, multipart: true, role: "form") do |f|
+	= f.hidden_field :conversation_id
+	= f.hidden_field :teacher_id
+	= f.label :title
+	= f.text_field :title
+	= f.label :body
+	= f.text_field :body
+	= f.submit

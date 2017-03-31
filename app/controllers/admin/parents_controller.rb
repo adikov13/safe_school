@@ -1,26 +1,34 @@
 module Admin 
 	class Admin::ParentsController < ApplicationController
 		def index
-
+			@parents = Parent.all
 		end
 		def new
-			
+			@parent = Parent.new
 		end
 		def create
-			username = generate_username(params[:first_name], params[:last_name])
-			password = generate_password(params[:first_name], params[:last_name])
-			
-			user = User.create(username: username, password: password,
-				date_of_birth: params[:date_of_birth],
-				first_name: params[:first_name],
-				last_name: params[:last_name],
-				phone_number: params[:phone_number],
-				password_confirmation: password, user_type_id: 1 )
-			@parent = Parent.create(user_id: user.id, childrens: params[:childrens] )
-			redirect_to admin_parent_path @parent
+			@parent = Parent.create(parent_params)
+			if @parent.save
+				redirect_to admin_parent_path @parent
+			 flash[:success] = "parent has been successfully created"
+			else
+				render :new
+				flash[:error] = "Something went wrong"
+			end
 		end
 		def show
 			@parent = Parent.find params[:id]
+		end
+
+		private
+
+		def parent_params
+			username = generate_username(params[:parent][:first_name], params[:parent][:last_name])
+			password = generate_password(params[:parent][:first_name], params[:parent][:last_name])
+
+			params.require(:parent).permit(:first_name, :last_name, :date_of_birth,
+																		 :phone_number, :childrens).merge(username: username,
+																		 password: password, password_confirmation: password)
 		end
 	end
 end
