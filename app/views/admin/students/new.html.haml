@@ -1,23 +1,21 @@
-= form_tag("/admin/students", method: :post) do
-	%div
-		= label_tag :first_name
-	%div
-		= text_field_tag :first_name
-	%div
-		= label_tag :last_name
-	%div
-		= text_field_tag :last_name
-	%div
-		= label_tag :date_of_birth
-	%div
-		= text_field_tag :date_of_birth
-	%div
-		= label_tag :phone_number
-	%div
-		= text_field_tag :phone_number
-	%div
-		= label_tag :group
-	%div
-		= text_field_tag :group	
-	%div
-		= submit_tag 
+.wrapper
+	= form_tag("/admin/students", method: :post) do
+		%p.center Dear Student, let the instructions
+		.form-group
+			= label_tag :first_name, nil, class: "col-md-4 control-label"
+			= text_field_tag :first_name, nil, class: "col-md-4 form-control", placeholder: "Enter your name"
+		.form-group
+			= label_tag :last_name, nil, class: "col-md-4 control-label"
+			= text_field_tag :last_name, nil, class: "col-md-4 control-label", placeholder: "Enter your surname"
+		.form-groupWS
+			= label_tag :childrens, nil, class: "col-md-4 control-label"
+			= text_field_tag :childrens, nil, class: "col-md-4 control-label", placeholder: "Enter your child's name"
+		.form-group
+			= label_tag :date_of_birth, nil, class: "col-md-4 control-label"
+			= text_field_tag :date_of_birth, nil, class: "col-md-4 control-label", placeholder: "Your date of birth"
+		.form-group
+			= label_tag :phone_number, nil, class: "col-md-4 control-label"
+			= text_field_tag :phone_number, nil, class: "col-md-4 control-label", placeholder: "Enter your name"
+		.form-group#submit#button#noneborder
+			= submit_tag
+		 	

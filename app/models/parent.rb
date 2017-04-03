@@ -6,4 +6,8 @@ class Parent < ApplicationRecord
 	# 	user = self.user
 	# 	return user.first_name, user.last_name, user.childrens
 	# end
+	def get_info
+		user = self.user
+		return user.first_name, user.last_name
+	end
 end
