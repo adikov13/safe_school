@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302130103) do
+ActiveRecord::Schema.define(version: 20170331142202) do
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "parent_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_conversations_on_parent_id"
+    t.index ["teacher_id", "parent_id"], name: "index_conversations_on_teacher_id_and_parent_id", unique: true
+    t.index ["teacher_id"], name: "index_conversations_on_teacher_id"
+  end
 
   create_table "group_students", id: false, force: :cascade do |t|
     t.integer  "group_id"
@@ -28,6 +38,18 @@ ActiveRecord::Schema.define(version: 20170302130103) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["teacher_id"], name: "index_groups_on_teacher_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "conversation_id"
+    t.integer  "teacher_id"
+    t.boolean  "read",            default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["teacher_id"], name: "index_messages_on_teacher_id"
   end
 
   create_table "parents", force: :cascade do |t|
@@ -83,6 +105,7 @@ ActiveRecord::Schema.define(version: 20170302130103) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["user_type_id"], name: "index_users_on_user_type_id"

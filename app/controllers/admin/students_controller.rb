@@ -3,21 +3,35 @@ module Admin
 		def index
 
 		end
+
 		def new
-			
+			@student = Student.new
 		end
+
 		def create
-			user = User.create(email: "qwe@qwe.com", password:"123456",
-				date_of_birth: params[:date_of_birth],
-				first_name: params[:first_name],
-				last_name: params[:last_name],
-				phone_number: params[:phone_number],
-				password_confirmation: "123456", user_type_id: 1 )
-			@student = Student.create(user_id: user.id, parent_id: 1)
-			redirect_to admin_student_path @student
+			@student = Student.create(student_params)
+			if @student.save
+				redirect_to admin_student_path @student
+			 flash[:success] = "Student has been successfully created"
+			else
+				render :new
+				flash[:error] = "Something went wrong"
+			end
 		end
+
 		def show
 			@student = Student.find params[:id]
+		end
+
+		private
+
+		def student_params
+			username = generate_username(params[:student][:first_name], params[:student][:last_name])
+			password = generate_password(params[:student][:first_name], params[:student][:last_name])
+
+			params.require(:student).permit(:first_name, :last_name, :date_of_birth, 
+																		 :phone_number).merge(username: username, 
+																		 password: password, password_confirmation: password)
 		end
 	end
 end

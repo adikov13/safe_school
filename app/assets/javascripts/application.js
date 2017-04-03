@@ -12,6 +12,25 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+<<<<<<< HEAD
+=======
+//= require moment
+//= require bootstrap-datetimepicker
+>>>>>>> 127cc558d94f5e4acb245507c80ed0c746fa2012
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+
+
+
+$("#menu-toggle").click(function(e) {
+		  e.preventDefault();
+		  $("#wrapper").toggleClass("toggled");
+		});
+
+$(function () {
+  $('#datetimepicker4').datetimepicker({
+  	viewMode: 'years',
+    format: 'MM/DD/YYYY'
+  });
+});

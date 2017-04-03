@@ -5,8 +5,15 @@
 		%meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
 		%title SafeSchool
 		= csrf_meta_tags
-		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-		= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+		= stylesheet_link_tag    'application', media: 'all'
 	%body
-		= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger"
-		= yield
+		#wrapper.toggled
+			.container-fluid
+				= render 'layouts/sidebar'
+				#page-content-wrapper
+					.container-fluid
+						= render 'layouts/header'
+						-flash.each do |name, msg|
+							= content_tag :div, msg, class: [:alert, alert_for(name)]
+						= yield
+		= javascript_include_tag 'application'

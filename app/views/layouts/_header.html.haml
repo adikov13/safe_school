@@ -1,0 +1,21 @@
+%nav.navbar.navbar-default.navbar-fixed{:role => "navigation"}
+	.navbar-header
+		%button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+			%span.sr-only Toggle navigation
+			%span.icon-bar
+			%span.icon-bar
+			%span.icon-bar
+		%a#menu-toggle.navbar-brand{:href => "#menu-toggle"}
+			%span.glyphicon.glyphicon-list{"aria-hidden" => "true"}
+	#navbar.navbar-collapse.collapse
+		%ul.nav.navbar-nav
+			%li
+				= link_to "Students", admin_students_path
+			%li
+				= link_to "Parents", admin_parents_path
+			%li
+				= link_to "Teachers", admin_teachers_path
+		.pull-right.signing
+			= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger"
+			= link_to "Sign in", new_user_session_path, class: "btn btn-default sign_in"
+			= link_to "Sign up", new_user_registration_path, class: "btn btn-primary sign_in"

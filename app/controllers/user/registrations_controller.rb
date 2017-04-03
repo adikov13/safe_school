@@ -38,8 +38,8 @@ class User::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_type_id])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:user_type_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_type_id, :username])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:user_type_id, :username])
   end
 
   # The path used after sign up.

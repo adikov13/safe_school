@@ -1,5 +1,7 @@
-class Teacher < ApplicationRecord
-	belongs_to :user
+class Teacher < User
+	
 	has_many :groups
-	validates :teaching_courses, presence: true
+	has_many :messages
+	has_many :conversations
+
 end
