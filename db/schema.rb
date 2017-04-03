@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331142202) do
+ActiveRecord::Schema.define(version: 20170404095755) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "parent_id"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20170331142202) do
     t.datetime "updated_at",                      null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["teacher_id"], name: "index_messages_on_teacher_id"
+  end
+
+  create_table "parent_students", force: :cascade do |t|
+    t.integer  "parent_id"
+    t.integer  "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_parent_students_on_parent_id"
+    t.index ["student_id"], name: "index_parent_students_on_student_id"
   end
 
   create_table "parents", force: :cascade do |t|

@@ -7,7 +7,7 @@ class ConversationsController < ApplicationController
 	def show
 		@conversation = Conversation.find(params[:id])
 		@message = @conversation.messages
-		@m = Message.new(conversation_id: @conversation.id, teacher_id: current_user.teacher.id)
+		@m = Message.new(conversation_id: @conversation.id, teacher_id: current_user.id)
 	end
 
 	def new

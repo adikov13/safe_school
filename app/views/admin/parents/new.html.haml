@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-.form-field
-	= form_tag("/admin/parents", method: :post) do
-		%p.center Dear Parent, let the instructions
-		.form-group
-			= label_tag :first_name, nil, class: "col-md-4 control-label"
-			= text_field_tag :first_name, nil, class: "col-md-4 form-control", placeholder: "Enter your name"
-		.form-group
-			= label_tag :last_name, nil, class: "col-md-4 control-label"
-			= text_field_tag :last_name, nil, class: "col-md-4 control-label", placeholder: "Enter your surname"
-		.form-group
-			= label_tag :childrens, nil, class: "col-md-4 control-label"
-			= text_field_tag :childrens, nil, class: "col-md-4 control-label", placeholder: "Enter your child's name"
-		.form-group
-			= label_tag :date_of_birth, nil, class: "col-md-4 control-label"
-			= text_field_tag :date_of_birth, nil, class: "col-md-4 control-label", placeholder: "Your date of birth"
-		.form-group
-			= label_tag :phone_number, nil, class: "col-md-4 control-label"
-			= text_field_tag :phone_number, nil, class: "col-md-4 control-label", placeholder: "Enter your name"
-		.form-group
-			= submit_tag
-		 	
 =======
 #content-wrapper
 	- if @parent.errors.any?
@@ -45,10 +23,8 @@
 								= f.text_field :date_of_birth, class: "form-control", id: "datetimepicker4", placeholder: "MM/DD/YYYY"
 							.form-group
 								= f.label :phone_number
-								= f.telephone_field :phone_number, class: "form-control", placeholder: "+996 555 111 222"
-							.form-group
-								= f.label :childrens
-								= f.text_field :childrens, class: "form-control"
+								= f.telephone_field :phone_number, class: "form-control", placeholder: "+996 555 111 222"	
 							.form-group.pull-right
+<<<<<<< HEAD
 								= f.submit "Create parent", class: "btn btn-primary btn-sm"
 >>>>>>> 127cc558d94f5e4acb245507c80ed0c746fa2012
