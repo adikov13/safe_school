@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404095755) do
+ActiveRecord::Schema.define(version: 20170404095758) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "parent_id"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 20170404095755) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["teacher_id"], name: "index_groups_on_teacher_id"
+  end
+
+  create_table "marks", force: :cascade do |t|
+    t.integer  "grade"
+    t.date     "date"
+    t.integer  "student_id"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_marks_on_student_id"
+    t.index ["subject_id"], name: "index_marks_on_subject_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -70,6 +81,16 @@ ActiveRecord::Schema.define(version: 20170404095755) do
     t.index ["user_id"], name: "index_parents_on_user_id"
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "priority"
+    t.integer  "subject_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_schedules_on_group_id"
+    t.index ["subject_id"], name: "index_schedules_on_subject_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "parent_id"
@@ -78,6 +99,14 @@ ActiveRecord::Schema.define(version: 20170404095755) do
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_students_on_parent_id"
     t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_subjects_on_teacher_id"
   end
 
   create_table "teachers", force: :cascade do |t|

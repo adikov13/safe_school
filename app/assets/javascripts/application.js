@@ -12,11 +12,8 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
-<<<<<<< HEAD
-=======
 //= require moment
 //= require bootstrap-datetimepicker
->>>>>>> 127cc558d94f5e4acb245507c80ed0c746fa2012
 //= require jquery_ujs
 //= require_tree .
 
@@ -34,9 +31,6 @@ $(function () {
     format: 'MM/DD/YYYY'
   });
 });
-<<<<<<< HEAD
-=======
-
 
 var new_message;
 new_message = function(){
@@ -55,4 +49,3 @@ new_message = function(){
 $(document).ready(function(){
 	new_message();
 });
->>>>>>> babe0854d4888f128bee8a4d99cafff709163f03
