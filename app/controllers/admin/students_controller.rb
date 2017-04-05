@@ -25,7 +25,7 @@ module Admin
 
 		private
 
-		def student_params
+		def student_params	
 			username = generate_username(params[:student][:first_name], params[:student][:last_name])
 			password = generate_password(params[:student][:first_name], params[:student][:last_name])
 

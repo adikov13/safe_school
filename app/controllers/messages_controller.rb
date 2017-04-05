@@ -21,8 +21,16 @@ class MessagesController < ApplicationController
 		unless @message.save!
 			flash[:error] = "Message hasn't been delivered"
 		else
-			redirect_to message_path(@message.conversation)
+			# redirect_to message_path(@message.conversation)
 		end
+
+		respond_to do |format|
+      if @message.save
+        format.json {render :show, status: :created, location: @message}
+      else
+        format.html {render :new}
+      end
+    end
 	end
 
 	def update

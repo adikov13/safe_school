@@ -31,3 +31,22 @@ $(function () {
     format: 'MM/DD/YYYY'
   });
 });
+
+
+var new_message;
+new_message = function(){
+	$('#new_message').on('ajax:before', 
+		function(event, data, status){
+	});
+	$('#new_message').on('ajax:after',
+		function(event, data, status){
+	});
+	$('#new_message').on('ajax:success', function(event, data, status){
+		var text = $('#messages').text();
+		$('#messages').text(text + data.title + data.body);
+	});
+};
+
+$(document).ready(function(){
+	new_message();
+});
