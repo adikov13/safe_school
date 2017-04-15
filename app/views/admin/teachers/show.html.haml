@@ -1,0 +1,188 @@
+#content-wrapper
+  .row
+    .col-lg-3.col-md-3.hidden-sm.hidden-xs
+      .panel.panel-default
+        .panel-body
+          %div{:align => "center"}
+            %img.thumbnail.img-responsive{:height => "300px", :src => "https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png", :width => "300px"}/
+        .panel-heading 
+          %h3 Profile
+        .panel-body
+          %h4 = @teacher.full_name
+          %p
+            %strong Date of Birth:
+            = @teacher.date_of_birth.to_formatted_s(:long_ordinal)
+    .col-lg-9.col-md-9
+      .row
+        .col-lg-9.col-md-9.col-sm-12.col-xs-12
+          .panel.panel-default
+            .panel-body 
+              %span
+                %h1.panel-title.pull-left{:style => "font-size:30px;"}
+                  = @teacher.full_name
+                .dropdown.pull-right
+                  %button.btn.btn-success.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown", :type => "button"}
+                    groups
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => "#"} ELT-14
+                    %li
+                      %a{:href => ""} RoR
+                    %li.divider{:role => "separator"}
+                    %li
+                      %a{:href => "#"}
+                        %i.fa.fa-fw.fa-plus{"aria-hidden" => "true"}
+                        Add group
+              %br
+              %br
+              %hr/
+              %ul.student-info
+                %li 
+                  %strong Group:
+                  @teacher.groups
+                %li
+                  %strong Teacher:
+                  %a{:href => "#"} = @teacher.full_name
+                %li
+                  %strong Date of Birth:
+                  = @teacher.date_of_birth.to_formatted_s(:long_ordinal)
+                %li
+                  %strong Phone number:
+                  = @teacher.phone_number
+              %span.pull-right
+                %a.btn.btn-link{:href => "#", :style => "text-decoration:none;"}
+                  %i.fa.fa-lg.fa-at{"aria-hidden" => "true", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Mention"}
+                %a.btn.btn-link{:href => "#", :style => "text-decoration:none;"}
+                  %i.fa.fa-lg.fa-envelope-o{"aria-hidden" => "true", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Message"}
+                %a.btn.btn-link{:href => "#", :style => "text-decoration:none;"}
+                  %i.fa.fa-lg.fa-ban{"aria-hidden" => "true", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Ignore"}
+        .col-sm-9
+          %ul#myTab.nav.nav-tabs
+            %li.active
+              %a{"data-toggle" => "tab", :href => "#grades-list"} Grades list
+            %li
+              %a{"data-toggle" => "tab", :href => "#attendance"} Attendance
+            %li
+              %a{"data-toggle" => "tab", :href => "#settings"} Settings
+          .tab-content
+            #grades-list.tab-pane.active
+              %table.table.table-responsive.table-hover
+                %thead
+                  %tr
+                    %th #
+                    %th Label 1
+                    %th Label 2
+                    %th Label 3
+                    %th Label
+                    %th Label
+                    %th Label
+                %tbody#items
+                  %tr
+                    %td 1
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                  %tr
+                    %td 2
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                  %tr
+                    %td 3
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                  %tr
+                    %td 4
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                  %tr
+                    %td 5
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                  %tr
+                    %td 6
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                  %tr
+                    %td 7
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                  %tr
+                    %td 8
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                  %tr
+                    %td 9
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+                    %td Table cell
+              %hr/
+            / /table-resp
+            .tab-pane#attendance
+              %table.table.table-responsive
+                %thead
+                  %tr
+                    %td ID
+                    %td First Name
+                    %td Last Name
+                    %td Enter/Exit
+                    %td Date
+                %tbody
+                  %tr.bg-success
+                    %td.table-active 1
+                    %td Baias
+                    %td Mametjanov
+                    %td came in
+                    %td 19/02/2017 6:30 PM
+                  %tr.bg-danger
+                    %td 2
+                    %td Baias
+                    %td Mametjanov
+                    %td came out
+                    %td 19/02/2017 8:35 PM
+                  %tr.bg-danger
+                    %td 3
+                    %td Baias
+                    %td Mametjanov
+                    %td came out
+                    %td 19/02/2017 9:40 PM
+                  %tr.bg-success
+                    %td 4
+                    %td Baias
+                    %td Mametjanov
+                    %td came in
+                    %td 19/04/2017 6:40 PM

@@ -30,8 +30,17 @@
 html, body{
 	height:100%;
 } 
-.rm{
-	width:40%!important;
+.fn{
+	width:40%;
+  float:left;
+}
+.ln{
+  width:40%;
+  float:left;
+  margin-left:15px;
+}
+.tf{
+  width: 100%!important
 }
 .frm{
 	width:75%;

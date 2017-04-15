@@ -1,27 +1,29 @@
-= form_tag("/admin/teachers", method: :post) do
-	%div
-		= label_tag :first_name
-	%div
-		= text_field_tag :first_name
-	%div
-		= label_tag :last_name
-	%div
-		= text_field_tag :last_name
-	%div
-		= label_tag :date_of_birth
-	%div
-		= text_field_tag :date_of_birth
-	%div
-		= label_tag :phone_number
-	%div
-		= text_field_tag :phone_number
-	%div
-		= label_tag :group
-	%div
-		= text_field_tag :group	
-	%div
-		= label_tag :teaching_courses
-	%div 
-		= text_field_tag :teaching_courses
-	%div
-		= submit_tag
+#content-wrapper
+	- if @teacher.errors.any?
+		%h3 The following errors occured
+		%ul
+			- @teacher.errors.full_messages.each do |msg|
+				%li
+					= msg
+	.row
+		.col-sm-offset-3.col-sm-6
+			.well
+				%h2{align: "center"} Create teacher
+				= form_for([:admin, @teacher], multipart: true, role: "form") do |f|
+					.form-wrap.clearfix
+						.form-inline.col-sm-offset-1.clearfix
+							.control-label
+								= f.label "Full name"
+							.fn
+								= f.text_field :first_name, class: "form-control tf", autofocus: true, placeholder: "First name"
+							.ln
+								= f.text_field :last_name, class: "form-control tf", placeholder: "Last name"
+						.frm.col-sm-offset-1
+							.form-group
+								= f.label :date_of_birth
+								= f.text_field :date_of_birth, class: "form-control", id: "datetimepicker4", placeholder: "MM/DD/YYYY"
+							.form-group
+								= f.label :phone_number
+								= f.telephone_field :phone_number, class: "form-control", placeholder: "+996 555 111 222"	
+							.form-group.pull-right
+								= f.submit "Create teacher", class: "btn btn-primary btn-sm"

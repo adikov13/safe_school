@@ -4,6 +4,7 @@ class CreateSchedules < ActiveRecord::Migration[5.0]
     	t.integer :priority
     	t.references :subject
     	t.references :group
+    	
       t.timestamps
     end
   end

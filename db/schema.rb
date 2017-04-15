@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404095758) do
+ActiveRecord::Schema.define(version: 20170410131746) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "parent_id"
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 20170404095758) do
     t.integer  "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id", "student_id"], name: "index_group_students_on_group_id_and_student_id", unique: true
     t.index ["group_id"], name: "index_group_students_on_group_id"
     t.index ["student_id"], name: "index_group_students_on_student_id"
+    t.index [nil, nil], name: "index_group_students_on_teacher_id_and_parent_id", unique: true
   end
 
   create_table "groups", force: :cascade do |t|
@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 20170404095758) do
   end
 
   create_table "parents", force: :cascade do |t|
-    t.string   "name"
     t.integer  "user_id"
     t.string   "childrens"
     t.datetime "created_at", null: false
@@ -85,8 +84,9 @@ ActiveRecord::Schema.define(version: 20170404095758) do
     t.integer  "priority"
     t.integer  "subject_id"
     t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "day_of_week"
     t.index ["group_id"], name: "index_schedules_on_group_id"
     t.index ["subject_id"], name: "index_schedules_on_subject_id"
   end
@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(version: 20170404095758) do
   end
 
   create_table "teachers", force: :cascade do |t|
-    t.string   "name"
     t.integer  "user_id"
     t.string   "group"
     t.string   "teaching_courses"
@@ -119,19 +118,12 @@ ActiveRecord::Schema.define(version: 20170404095758) do
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
-  create_table "user_types", force: :cascade do |t|
-    t.string   "user_type",  default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
   create_table "users", force: :cascade do |t|
-    t.integer  "user_type_id"
     t.string   "first_name"
     t.string   "last_name"
     t.date     "date_of_birth"
     t.string   "phone_number"
-    t.string   "email",                  default: "", null: false
+    t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -144,9 +136,8 @@ ActiveRecord::Schema.define(version: 20170404095758) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "type"
-    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["user_type_id"], name: "index_users_on_user_type_id"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end
