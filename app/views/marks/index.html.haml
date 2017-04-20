@@ -1,39 +1,8 @@
-/ %table#mytable{:border => "1"}
-/   %tr
-/     %th Student
-/     - @days.each do |day|
-/       %th{:id => day}= day.day
-/   - @students.each do |student|
-/     %tr{:id => student.id}
-/       %td= student.first_name
-/       %td
-/         - @days.each do |day|
-/           %td
-
-
-
 .gradebook-wrapper
 	%ul#months.nav.nav-tabs.clearfix
-		- I18n.t("date.month_names").each do |m|
-			%li
-				%a{"data-toggle" => "tabs", :href => "#september"}
-					= m
-			/ %li
-			/ 	%a{"data-toggle" => "tabs", :href => "#october"} October
-			/ %li
-			/ 	%a{"data-toggle" => "tabs", :href => "#november"} November
-			/ %li
-			/ 	%a{"data-toggle" => "tabs", :href => "#december"} December
-			/ %li
-			/ 	%a{"data-toggle" => "tabs", :href => "#january"} January
-			/ %li
-			/ 	%a{"data-toggle" => "tabs", :href => "#february"} February
-			/ %li
-			/ 	%a{"data-toggle" => "tabs", :href => "#march"} March
-			/ %li
-			/ 	%a{"data-toggle" => "tabs", :href => "#april"} April
-			/ %li
-			/ 	%a{"data-toggle" => "tabs", :href => "#may"} May
+		%li
+			%a{"data-toggle" => "tabs", :href => "#september"}
+				month 1
 		%li.pull-right
 			.dropdown#group-list-container
 				%button.btn.btn-success.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
@@ -46,24 +15,9 @@
 								= g.name
 
 	%ul#subjects.nav.nav-pills.nav-stacked.col-md-1
-		- @subjects.each do |s|
-			%li
-				%a{"data-toggle" => "pill", :href => "##{s.title.underscore}"} 
-					= s.title
+		%li
+			%a{"data-toggle" => "pill", :href => "#"} 
+				subject 1
 	.tab-content
-		#ruby_on_rails.tab-pane.fade.in.active.col-md-11
+		#mytab.tab-pane.fade.in.active.col-md-11
 			%table#mytable.table.table-bordered.table-responsive
-				%thead
-					%tr
-						%th Student
-						- @days.each do |day|
-							%th{:id => day}= day.day
-				%tbody
-					- @students.each do |student|
-						%tr{:id => student.id}
-							%td= student.full_name
-							%td
-								- @days.each do |day|
-									%td
-		#php.tab-pane.fade
-			%h3 Home

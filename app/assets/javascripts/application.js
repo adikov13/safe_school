@@ -70,7 +70,6 @@ var handleClicks = function(){
       },
       success:function(data){
       	$(this).css('background-color', '#5cb85c');
-      	$(this).append(data.grade)
       },
       error:function(data){
           //ошибка
@@ -81,9 +80,34 @@ var handleClicks = function(){
 $(document).ready(function(){
   handleClicks();
   new_message();
+  monthTabChange();
 });
 
 $("#group-list li a").click(function(){
   $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
   $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 });
+
+var monthTabChange = function(){
+	$(".nav-tabs > li > a").click(function(){
+	$(".nav-tabs > li.active").removeClass("active");
+	$(this).parent().addClass('active');
+	var month = $(this).attr("id");
+	console.log(month); 
+	$.ajax({
+    url:'/marks',
+    type:'GET',
+    dataType:'json',
+    data:{
+      month: month
+    },
+    success:function(data){
+    	console.log(data);
+    },
+    error:function(data){
+        //ошибка
+    }	
+	});
+	});
+}
+
