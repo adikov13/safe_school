@@ -19,12 +19,12 @@
 @import 'bootstrap-datetimepicker';
 @import "font-awesome";
 @font-face{
-   font-family: 'Glyphicons Halflings';
-   src: url('/assets/glyphicons-halflings-regular.eot');
-   src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-      url('/assets/glyphicons-halflings-regular.woff') format('woff'),
-      url('/assets/glyphicons-halflings-regular.ttf') format('truetype'),
-      url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+	 font-family: 'Glyphicons Halflings';
+	 src: url('/assets/glyphicons-halflings-regular.eot');
+	 src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+			url('/assets/glyphicons-halflings-regular.woff') format('woff'),
+			url('/assets/glyphicons-halflings-regular.ttf') format('truetype'),
+			url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
 html, body{
@@ -32,15 +32,15 @@ html, body{
 } 
 .fn{
 	width:40%;
-  float:left;
+	float:left;
 }
 .ln{
-  width:40%;
-  float:left;
-  margin-left:15px;
+	width:40%;
+	float:left;
+	margin-left:15px;
 }
 .tf{
-  width: 100%!important
+	width: 100%!important
 }
 .frm{
 	width:75%;
@@ -49,158 +49,173 @@ html, body{
 
 /*Navbar Styles*/
 .navbar{
-    margin:0!important;
+		margin:0!important;
 }
 nav.navbar.navbar-default{
-    background-color:#EDEDED;
+		background-color:#EDEDED;
 }
 ul{
-    list-style:none;
+		list-style:none;
 }
 
 
 /*Wrapper Styles*/
 
 #wrapper {
-    display: inline-block;
-    padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    width: 100%;
+		display: inline-block;
+		padding-left: 0;
+		-webkit-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		-o-transition: all 0.5s ease;
+		transition: all 0.5s ease;
+		width: 100%;
 }
 
 #wrapper .container-fluid{
-    padding: 0;
+		padding: 0;
 }
 
 #wrapper.toggled {
-    padding-left: 250px;
+		padding-left: 250px;
 }
 
 #sidebar-wrapper {
-    position: fixed;
-    left: 250px;
-    z-index: 1000;
-    overflow-y: auto;
-    margin-left: -250px;
-    width: 0;
-    height: 100%;
-    background: #2A3F54;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+		position: fixed;
+		left: 250px;
+		z-index: 1000;
+		overflow-y: auto;
+		margin-left: -250px;
+		width: 0;
+		height: 100%;
+		background: #2A3F54;
+		-webkit-transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		transition: all 0.3s ease;
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+		width: 250px;
 }
 
 #page-content-wrapper {
-    width: 100%;
+		width: 100%;
 }
 
 #wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -50px;
+		position: absolute;
+		margin-right: -50px;
 }
 
 #page-content-wrapper .container-fluid{
-    padding-left:0;
-    padding-right:0;
+		padding-left:0;
+		padding-right:0;
 }   
 
 #content-wrapper{
-    margin-top: 30px;
-    margin-left: 30px;
+		margin-top: 30px;
+		margin-left: 30px;
 }
 
 /* Sidebar Styles */
 
 .sidebar-nav {
-    position: absolute;
-    top: 0;
-    margin: 0;
-    padding: 0;
-    width: 250px;
-    list-style: none;
+		position: absolute;
+		top: 0;
+		margin: 0;
+		padding: 0;
+		width: 250px;
+		list-style: none;
 }
 
 .sidebar-nav li {
-    text-indent: 20px;
-    line-height: 40px;
+		text-indent: 20px;
+		line-height: 40px;
 }
 
 .sidebar-nav li a {
-    display: block;
-    color: #DFE0E1;
-    text-decoration: none;
+		display: block;
+		color: #DFE0E1;
+		text-decoration: none;
 }
 
 .sidebar-nav li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    text-decoration: none;
+		background: rgba(255, 255, 255, 0.2);
+		color: #fff;
+		text-decoration: none;
 }
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
-    text-decoration: none;
+		text-decoration: none;
 }
 
 .sidebar-nav > .sidebar-brand {
-    height: 65px;
-    font-size: 18px;
-    line-height: 60px;
+		height: 65px;
+		font-size: 18px;
+		line-height: 60px;
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #DFE0E1;
+		color: #DFE0E1;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
-    background: none;
-    color: #fff;
+		background: none;
+		color: #fff;
 }
 
 /*Sidebar styles*/
 
 ul.student-info{
-    padding:0;
-    margin:0; 
+		padding:0;
+		margin:0; 
 }
 
 ul.student-info li{
-    padding-bottom:5px;
+		padding-bottom:5px;
 }
+
+/* Gradebook */
+
+.gradebook-wrapper{
+	margin: 50px 40px;
+}
+#group-list-container{
+	margin-right:20px;
+}
+#months{
+	margin-bottom:20px;
+}
+
+
+
 
 /*Media*/
 
 @media (min-width: 768px) {
-    #wrapper {
-        padding-left: 250px;
-    }
+		#wrapper {
+				padding-left: 250px;
+		}
 
-    #wrapper.toggled {
-        padding-left: 0;
-    }
+		#wrapper.toggled {
+				padding-left: 0;
+		}
 
-    #sidebar-wrapper {
-        width: 250px;
-    }
+		#sidebar-wrapper {
+				width: 250px;
+		}
 
-    #wrapper.toggled #sidebar-wrapper {
-        width: 0;
-    }
+		#wrapper.toggled #sidebar-wrapper {
+				width: 0;
+		}
 
-    #page-content-wrapper {
-        padding: 0;
-    }
+		#page-content-wrapper {
+				padding: 0;
+		}
 
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
-    }
+		#wrapper.toggled #page-content-wrapper {
+				position: relative;
+				margin-right: 0;
+		}
 }

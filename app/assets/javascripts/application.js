@@ -46,6 +46,44 @@ new_message = function(){
 	});
 };
 
+
+var handleClicks = function(){
+  $('#mytable td').click(function(){
+    var date = $('#mytable th').eq($(this).index()).attr('id'); //находим дату
+    var grade = prompt("Enter grade"); //запрашиваем оценку, подумай как украсить
+    var student = $(this).closest('tr').attr('id'); //находим student id через аттрибут id tr
+    var subject = "1"; //эту часть попробуй сам написать
+    console.log(student);
+
+    $.ajax({
+    	context: this,
+      url:'/marks',
+      type:'POST',
+      dataType:'json',
+      data:{
+        mark:{ //создаем объект Mark
+          date: date,
+          student_id: student,
+          subject_id: subject,
+          grade: grade
+        }
+      },
+      success:function(data){
+      	$(this).css('background-color', '#5cb85c');
+      	$(this).append(data.grade)
+      },
+      error:function(data){
+          //ошибка
+      }
+  });
+  });
+};
 $(document).ready(function(){
-	new_message();
+  handleClicks();
+  new_message();
+});
+
+$("#group-list li a").click(function(){
+  $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+  $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 });

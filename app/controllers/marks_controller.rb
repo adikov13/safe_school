@@ -1,6 +1,10 @@
 class MarksController < ApplicationController
 	def index
-		@marks = Marks.all
+    @students = Student.all 
+    @groups = Group.all
+    @subjects = Subject.all
+    @month = Date.new(2017-03-01) 
+    @days = @month..@month.next_month.prev_day #помещаем даты в в массив с 
 	end
 
 	def edit
@@ -8,7 +12,7 @@ class MarksController < ApplicationController
 	end
 
 	def create
-		
+		@mark = Mark.create marks_params
 	end
 
 	def update
@@ -21,6 +25,6 @@ class MarksController < ApplicationController
 
 	private
 		def marks_params
-
+			params.require(:mark).permit(:grade, :student_id, :subject_id, :date)
 		end
 end
