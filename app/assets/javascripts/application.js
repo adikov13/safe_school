@@ -34,7 +34,7 @@ $(function () {
 
 var new_message;
 new_message = function(){
-	$('#new_message').on('ajax:before', 
+	$('#new_message').on('ajax:before',
 		function(event, data, status){
 	});
 	$('#new_message').on('ajax:after',
@@ -46,68 +46,11 @@ new_message = function(){
 	});
 };
 
-
-var handleClicks = function(){
-  $('#mytable td').click(function(){
-    var date = $('#mytable th').eq($(this).index()).attr('id'); //находим дату
-    var grade = prompt("Enter grade"); //запрашиваем оценку, подумай как украсить
-    var student = $(this).closest('tr').attr('id'); //находим student id через аттрибут id tr
-    var subject = "1"; //эту часть попробуй сам написать
-    console.log(student);
-
-    $.ajax({
-    	context: this,
-      url:'/marks',
-      type:'POST',
-      dataType:'json',
-      data:{
-        mark:{ //создаем объект Mark
-          date: date,
-          student_id: student,
-          subject_id: subject,
-          grade: grade
-        }
-      },
-      success:function(data){
-      	$(this).css('background-color', '#5cb85c');
-      },
-      error:function(data){
-          //ошибка
-      }
-  });
-  });
-};
 $(document).ready(function(){
-  handleClicks();
   new_message();
-  monthTabChange();
 });
 
 $("#group-list li a").click(function(){
   $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
   $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 });
-
-var monthTabChange = function(){
-	$(".nav-tabs > li > a").click(function(){
-	$(".nav-tabs > li.active").removeClass("active");
-	$(this).parent().addClass('active');
-	var month = $(this).attr("id");
-	console.log(month); 
-	$.ajax({
-    url:'/marks',
-    type:'GET',
-    dataType:'json',
-    data:{
-      month: month
-    },
-    success:function(data){
-    	console.log(data);
-    },
-    error:function(data){
-        //ошибка
-    }	
-	});
-	});
-}
-

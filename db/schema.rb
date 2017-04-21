@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 20170418140432) do
     t.integer  "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["group_id", "student_id"], name: "index_group_students_on_group_id_and_student_id", unique: true
     t.index ["group_id"], name: "index_group_students_on_group_id"
     t.index ["student_id"], name: "index_group_students_on_student_id"
-    t.index [nil, nil], name: "index_group_students_on_teacher_id_and_parent_id", unique: true
   end
 
   create_table "group_subjects", force: :cascade do |t|
