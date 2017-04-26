@@ -9,7 +9,7 @@ var dayFromDate = function(date){
 //main functions
 var buildTable = function(students,days){
 	var $mytable = $('#mytable').empty();
-
+	console.log('building new table');
 	var $tr = $('<tr>');
 	$tr.append($('<th>').append("Student Name"));
 	$.each(days, function(index, day){
@@ -37,37 +37,52 @@ var fillTable = function(marks){
 //event functions
 
 var changeMonth = function(){
+
  	$(".nav-tabs > li > a").click(function(){
 		$(".nav-tabs > li.active").removeClass("active");
 		$(this).parent().addClass('active');
 		var month = $(this).attr("id");
-		console.log(month);
-		loadData(month);
+		var subject = $(".nav-pills > li.active a").attr("id");
+		console.log("clicked month: id" + month);
+		loadData(month, subject);
+	});
+};
+
+var changeSubject = function(){
+	$(".nav-pills > li").first().addClass("active")
+
+	$(".nav-pills > li > a").click(function(){
+		$(".nav-pills > li.active").removeClass("active");
+		$(this).parent().addClass('active');
+		var subject = $(this).attr("id");
+		var month = $(".nav-tabs > li.active a").attr("id");
+		console.log("clicked subject:  id:"+subject);
+		loadData(month, subject);
 	});
 };
 
 
-var loadData = function(month){
-		var days = [1,2,3,4,5,6,7,8,9,10];
-	 		$.ajax({
-			  url:'/loaddata',
-			  type:'GET',
-			  dataType:'json',
-			  data:{
-			  	group_id: 1,
-			  	subject_id: 1,
-			  	month: month
-			  },
-			  success:function(data){
-			  	buildTable(data.students, days);
-			  	fillTable(data.marks);
-			  },
-			  error:function(data){
-			      //ошибка
-			  }
-		  });
+var loadData = function(month, subject){
+ 		$.ajax({
+		  url:'/loaddata',
+		  type:'GET',
+		  dataType:'json',
+		  data:{
+		  	subject_id: subject,
+		  	month: month
+		  },
+		  success:function(data){
+		  	buildTable(data.students, data.days);
+		  	fillTable(data.marks);
+		  },
+		  error:function(data){
+		      console.log('ajax errro');
+		  }
+	  });
 };
 $(document).ready(function(){
-	loadData(9);
+	var month = $(".nav-tabs > li.active a").attr("id");
+	loadData(month, 1);
 	changeMonth();
+	changeSubject();
 });

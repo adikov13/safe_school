@@ -1,9 +1,31 @@
 .gradebook-wrapper
 	%ul#months.nav.nav-tabs.clearfix
 		- @month_list.each do |k,v|
+			- if v == Date.today.month
+				%li.active
+					%a{"data-toggle" => "tabs", id: "#{v}"}
+						= k
+			- else
+				%li
+					%a{"data-toggle" => "tabs", id: "#{v}"}
+						= k
+
+		%li.pull-right
+			= form_tag(marks_path, method: :get) do
+				.dropdown
+					%button.btn.btn-success.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+						Choice group
+						%span.caret
+					%ul#group-list.dropdown-menu
+						- @groups.each do |g|
+							%li
+								%button.dropdown-item.btn.btn-success{"value" => "#{g.id}", name:"group_id"}
+									= g.name
+	%ul#subjects.nav.nav-pills.nav-stacked.clearfix.col-md-1
+		- @subjects.each do |s|
 			%li
-				%a{"data-toggle" => "tabs", :href => "#september", id: "#{v}"}
-					= k
+				%a{"data-toggle" => "tabs", id: "#{s.id}"}
+					= s.title
 	.tab-content
 		#mytab.tab-pane.fade.in.active.col-md-11
 			%table#mytable.table.table-bordered.table-responsive

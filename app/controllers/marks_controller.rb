@@ -1,21 +1,24 @@
 class MarksController < ApplicationController
+
 	def index
     @month_list = {September: 9, October: 10, November: 11, March: 3, April: 4}
+		@groups = current_user.groups
+		@group = params[:group_id].nil? ? @groups.first : @groups.find(params[:group_id])
+		session[:group_id] = @group.id
+		@subjects = @group.subjects
 	end
 
 	def load_data
-		@groups = current_user.groups
-		@group = @groups.find(params[:group_id])
-
-		@subjects = @group.subjects
-    @subject = @subjects.find(params[:subject_id])
+		@group = current_user.groups.find(session[:group_id])
+    @subject = @group.subjects.find(params[:subject_id])
 
     @students = @group.students
-    # @days = Time.days_in_month(params[:month].to_i)
+    @last_day = Time.days_in_month(params[:month].to_i)
+		@days = (1..@last_day).to_a
     date = Date.new(2017, params[:month].to_i)
     start_date = date
     end_date = date.end_of_month
-    @marks = Mark.where("date >= ? and date <= ?", start_date, end_date)
+    @marks = @subject.marks.where("date >= ? and date <= ?", start_date, end_date)
   end
 
 	def edit

@@ -8,3 +8,4 @@ json.marks @marks do |mark|
 	json.date mark.date
 	json.grade mark.grade
 end
+json.days @days
