@@ -18,7 +18,7 @@
 //= require_tree .
 
 
-
+$('.editable').editable()
 
 $("#menu-toggle").click(function(e) {
 		  e.preventDefault();

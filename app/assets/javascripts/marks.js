@@ -21,16 +21,40 @@ var buildTable = function(students,days){
 		$tr = $('<tr>');
 		$tr.append($('<td>').append(student.full_name));
 		$.each(days, function(index, day){
-			$tr.append($('<td>', {id: elementIdBuilder(student.id, day)}))
+			$tr.append($('<td>', {id: elementIdBuilder(student.id, day)}).prop('contenteditable', true))
 		});
 		$mytable.append($tr);
 	});
 
 };
 
+var createMark = function(){
+	$("#mytable").on('keyup', 'td', function(event){
+    if(event.keyCode == 13){
+	    var grade = $(this).text();
+			var month = $("#months > li.active a").attr("id");
+			var subject = $("#subjects > li.active a").attr("id");
+			var student = $(this).attr("id").split("_")[0];
+			var day = $(this).attr("id").split("_")[1];
+			var date = "2017" + "/" + month + "/" + day;
+			$.ajax({
+				url: "/marks",
+				type: "POST",
+				data:{
+					subject_id: subject,
+					student_id: student,
+					grade: grade,
+					date: date
+				}
+			});
+    };
+	});
+};
+
 var fillTable = function(marks){
 	$.each(marks, function(index, mark){
 		did = '#' + elementIdBuilder(mark.student_id, dayFromDate(mark.date));
+		$(did).addClass('marked');
 		$(did).text(mark.grade);
 	});
 };
@@ -76,7 +100,6 @@ var loadData = function(month, subject){
 		  	fillTable(data.marks);
 		  },
 		  error:function(data){
-		      console.log('ajax errro');
 		  }
 	  });
 };
@@ -85,4 +108,5 @@ $(document).ready(function(){
 	loadData(month, 1);
 	changeMonth();
 	changeSubject();
+	createMark();
 });

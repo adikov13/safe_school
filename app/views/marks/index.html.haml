@@ -10,17 +10,16 @@
 					%a{"data-toggle" => "tabs", id: "#{v}"}
 						= k
 
-		%li.pull-right
+		%li.pull-right.dropdown
 			= form_tag(marks_path, method: :get) do
-				.dropdown
-					%button.btn.btn-success.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-						Choice group
-						%span.caret
-					%ul#group-list.dropdown-menu
-						- @groups.each do |g|
-							%li
-								%button.dropdown-item.btn.btn-success{"value" => "#{g.id}", name:"group_id"}
-									= g.name
+				%button.btn.btn-success.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+					Choice group
+					%span.caret
+				%ul#group-list.dropdown-menu
+					- @groups.each do |g|
+						%li
+							%button.dropdown-item.btn.btn-success{"value" => "#{g.id}", name:"group_id"}
+								= g.name
 	%ul#subjects.nav.nav-pills.nav-stacked.clearfix.col-md-1
 		- @subjects.each do |s|
 			%li
@@ -29,3 +28,8 @@
 	.tab-content
 		#mytab.tab-pane.fade.in.active.col-md-11
 			%table#mytable.table.table-bordered.table-responsive
+-# %link{:href => "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css", :rel => "stylesheet"}/
+-# %script{:src => "http://code.jquery.com/jquery-2.0.3.min.js"}
+-# %script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"}
+-# %link{:href => "http://fonts.googleapis.com/css?family=Lato", :rel => "stylesheet", :type => "text/css"}/
+%h1 asdfasfs
