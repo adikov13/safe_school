@@ -26,7 +26,8 @@ class MarksController < ApplicationController
 	end
 
 	def create
-		@mark = Mark.create marks_params
+		@mark = Mark.create(grade: params[:grade], student_id: params[:student_id],
+												subject_id: params[:subject_id], date: params[:date])
 	end
 
 	def update

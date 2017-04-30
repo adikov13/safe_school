@@ -36,7 +36,7 @@ var createMark = function(){
 			var subject = $("#subjects > li.active a").attr("id");
 			var student = $(this).attr("id").split("_")[0];
 			var day = $(this).attr("id").split("_")[1];
-			var date = "2017" + "/" + month + "/" + day;
+			var date = "2017" + "-" + month + "-" + day;
 			$.ajax({
 				url: "/marks",
 				type: "POST",
@@ -67,7 +67,6 @@ var changeMonth = function(){
 		$(this).parent().addClass('active');
 		var month = $(this).attr("id");
 		var subject = $(".nav-pills > li.active a").attr("id");
-		console.log("clicked month: id" + month);
 		loadData(month, subject);
 	});
 };
@@ -80,7 +79,6 @@ var changeSubject = function(){
 		$(this).parent().addClass('active');
 		var subject = $(this).attr("id");
 		var month = $(".nav-tabs > li.active a").attr("id");
-		console.log("clicked subject:  id:"+subject);
 		loadData(month, subject);
 	});
 };
