@@ -1,7 +1,7 @@
 class MarksController < ApplicationController
 
 	def index
-    @month_list = {September: 9, October: 10, November: 11, March: 3, April: 4}
+    @month_list = {September: 9, October: 10, November: 11, March: 3, April: 4, May: 5}
 		@groups = current_user.groups
 		@group = params[:group_id].nil? ? @groups.first : @groups.find(params[:group_id])
 		session[:group_id] = @group.id

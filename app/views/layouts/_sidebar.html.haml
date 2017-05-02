@@ -9,6 +9,7 @@
 			= link_to(root_path) do
 				%span.glyphicon.glyphicon-user{"aria-hidden" => "true"}
 				Home
+		%li.divider
 		%li.collapsed{"data-toggle" => "collapse", "data-target" => "#create"}
 			%a{:href => "#"}
 				%span.glyphicon.glyphicon-user{"aria-hidden" => "true"}
@@ -21,6 +22,7 @@
 				= link_to "Parents", new_admin_parent_path
 			%li
 				= link_to "Teachers", new_admin_teacher_path
+		%li.divider
 		%li
 			%a{:href => "#"}
 				%span.glyphicon.glyphicon-envelope{"aria-hidden" => "true"}

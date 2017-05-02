@@ -13,7 +13,7 @@
 		%li.pull-right.dropdown
 			= form_tag(marks_path, method: :get) do
 				%button.btn.btn-success.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-					Choice group
+					Choose group
 					%span.caret
 				%ul#group-list.dropdown-menu
 					- @groups.each do |g|
@@ -32,4 +32,10 @@
 -# %script{:src => "http://code.jquery.com/jquery-2.0.3.min.js"}
 -# %script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"}
 -# %link{:href => "http://fonts.googleapis.com/css?family=Lato", :rel => "stylesheet", :type => "text/css"}/
-%h1 asdfasfs
+#popover-content.hide
+	%span 1
+	%span 2
+	%span 3
+	%span 4
+	%span 5
+	%span n

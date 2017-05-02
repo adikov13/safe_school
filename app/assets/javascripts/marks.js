@@ -21,7 +21,11 @@ var buildTable = function(students,days){
 		$tr = $('<tr>');
 		$tr.append($('<td>').append(student.full_name));
 		$.each(days, function(index, day){
-			$tr.append($('<td>', {id: elementIdBuilder(student.id, day)}).prop('contenteditable', true))
+			$tr.append($('<td>', {id: elementIdBuilder(student.id, day)}).prop('contenteditable', true).attr({
+				"data-toggle": "popover",
+				"data-placement" : "top",
+				"data-html" : true
+			}));
 		});
 		$mytable.append($tr);
 	});
@@ -29,26 +33,34 @@ var buildTable = function(students,days){
 };
 
 var createMark = function(){
-	$("#mytable").on('keyup', 'td', function(event){
-    if(event.keyCode == 13){
-	    var grade = $(this).text();
-			var month = $("#months > li.active a").attr("id");
-			var subject = $("#subjects > li.active a").attr("id");
-			var student = $(this).attr("id").split("_")[0];
-			var day = $(this).attr("id").split("_")[1];
-			var date = "2017" + "-" + month + "-" + day;
-			$.ajax({
-				url: "/marks",
-				type: "POST",
-				data:{
-					subject_id: subject,
-					student_id: student,
-					grade: grade,
-					date: date
-				}
-			});
-    };
+	$("#mytable").on('click', 'td', function(event){
+		$(this).popover({
+	    html: true,
+			content: function() {
+	    	return $('#popover-content').html();
+	    }
+		});
 	});
+	// $("#mytable").on('keyup', 'td', function(event){
+  //   if(event.keyCode == 13){
+	//     var grade = $(this).text();
+	// 		var month = $("#months > li.active a").attr("id");
+	// 		var subject = $("#subjects > li.active a").attr("id");
+	// 		var student = $(this).attr("id").split("_")[0];
+	// 		var day = $(this).attr("id").split("_")[1];
+	// 		var date = "2017" + "-" + month + "-" + day;
+	// 		$.ajax({
+	// 			url: "/marks",
+	// 			type: "POST",
+	// 			data:{
+	// 				subject_id: subject,
+	// 				student_id: student,
+	// 				grade: grade,
+	// 				date: date
+	// 			}
+	// 		});
+  //   };
+	// });
 };
 
 var fillTable = function(marks){
